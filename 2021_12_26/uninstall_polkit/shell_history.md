@@ -1,4 +1,15 @@
+**更新**: 之后会无法登录.
 
+```
+peter@archlinux ~> systemctl --failed
+  UNIT                    LOAD   ACTIVE SUB    DESCRIPTION     
+● accounts-daemon.service loaded failed failed Accounts Service
+
+LOAD   = Reflects whether the unit definition was properly loaded.
+ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
+SUB    = The low-level unit activation state, values depend on unit type.
+1 loaded units listed.
+```
 `$ sudo pacman -R --assume-installed polkit polkit`
 ```
 $sudo pacman -Syu
