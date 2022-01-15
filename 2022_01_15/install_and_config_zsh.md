@@ -37,6 +37,8 @@ RPROMPT='[%F{yellow}%?%f]
 ```
 # 用 antigen 管理 zsh plugin
 source /usr/share/zsh/share/antigen.zsh
+# use oh-my-zsh
+antigen use oh-my-zsh
 # Bundles from the default repo(escape zsh-users/zsh-syntax-highlighting)  
 antigen bundle command-not-found
 antigen bundle git
