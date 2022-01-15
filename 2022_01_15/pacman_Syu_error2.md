@@ -9,3 +9,5 @@ error: failed to synchronize all databases (unable to lock database)
 
 按之前的处理办法, 没能找到`/var/lib/pacman/db.lck`.
 过一段时间再次执行`$ sudo pacman -Syu --disable-download-time`, 竟然提示系统更新完成, 可能是ssh断掉不影响系统更新进程吧...
+
+为以防万一, 之后执行: `$ sudo pacman -Syyu --disable-download-time`进行强制更新.
