@@ -22,3 +22,7 @@ fi
 ```
 
 改完`~/.bashrc`之后, 记得 `$ source ~/.bashrc` 以立即生效.
+
+---
+## 2022/02/11 更新:
+注释掉了 `if [ -z "$BASH_EXECUTION_STRING" ]; then exec fish; fi`, 这样可以在fish 输入 `bash`时切换到 bash.
