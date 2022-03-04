@@ -13,6 +13,8 @@ https://man.archlinux.org/man/extra/nvidia-settings/nvidia-settings.1.en
 https://man.archlinux.org/man/extra/nvidia-utils/nvidia-xconfig.1.en
 https://man.archlinux.org/man/X.7
 https://man.archlinux.org/man/Xorg.1
+4. fedora wiki 上的 Input_device_configuration#xorg.conf.d:
+https://fedoraproject.org/wiki/Input_device_configuration#xorg.conf.d
 
 ## operation
 1. 根据内核安装对应的 nvidia 驱动, nvidia 对应 linux, nvidia-lts 对应 linux-lts, 其他内核需要 nvidia-dkms. 这里安装了 nvidia 和 nvidia-lts.
@@ -65,4 +67,38 @@ Section "Screen"
     EndSubSection
 EndSection
 ```
+4. 在更新一下之前为了在更新 initramfs 时把nvidia 一起生成 initram 的hook 更新一下, 为 linux 和 linux-lts 两个内核都设置hooks, 位置在 `/etc/pacman.d/hooks/nvidia.hook`:
+```
+## Add on 2022-03-02, 23:28, for add "nvidia-lts" hooks to update initramfs 
+when roll-update nvidia-lts driver.
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Operation=Remove
+Type=Package
+Target=nvidia-lts
+Target=linux-lts
+# Change the linux part above and in the Exec line if a different kernel is 
+used
+## End add on 2022-03-02, 23:28, for add "nvidia-lts" hooks to update initramfs when roll-update nvidia-lts driver
+
+
+[Trigger]
+Operation=Install
+Operation=Upgrade
+Operation=Remove
+Type=Package
+Target=nvidia
+Target=linux
+# Change the linux part above and in the Exec line if a different kernel is 
+used
+
+[Action]
+Description=Update Nvidia module in initcpio
+Depends=mkinitcpio
+When=PostTransaction
+NeedsTargets
+Exec=/bin/sh -c 'while read -r trg; do case $trg in linux) exit 0; esac; done; /usr/bin/mkinitcpio -P'
+```
+
 完成.
