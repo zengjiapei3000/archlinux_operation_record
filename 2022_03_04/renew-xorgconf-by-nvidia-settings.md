@@ -8,8 +8,10 @@
 https://docs.nvidia.com/drive/drive_os_5.1.6.1L/nvvib_docs/index.html#page/
 
 DRIVE_OS_Linux_SDK_Development_Guide/Windows%20Systems/window_system_x11.html#
+
 2.  archwiki 的nvidia:
 https://wiki.archlinux.org/title/NVIDIA
+
 3. man.archlinux.org 的 nvidia-settings, nvidia-xconfig, Xorg, X, xorg.conf/xorg.conf.d 页面:
 https://man.archlinux.org/man/extra/nvidia-settings/nvidia-settings.1.en
 
