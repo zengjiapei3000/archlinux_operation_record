@@ -1,4 +1,4 @@
-# gpg-gen-key
+# gen-gpg-key
 
 初次使用gpg，需要先生成一对gpgkey。但是一看gpg的cli option有200多条，遂找到网络上的参考blog，自行走一遍流程。
 
@@ -263,8 +263,9 @@ Really create? (y/N) y
     fi
     ```
 
-1. 导出公钥放到服务器上。
+1. 导出公钥放到服务器/GitHub上。
     - 先`gpg --list-keys --keyid-format long`找到 ssh 的 {subkey id}，
     - 然后 `gpg --armor --export-ssh-key {subkey id}`。
+    **tips**: [参考里](https://blog.mozcp.com/use-gnupg-agent-as-ssh-agent/)写的是 `gpg --armor --export-ssh-key {subkey id}`，这种导出的是ssh格式的pubkey，github不能使用这种导出的格式，换成`gpg --armor --export {subkey id}`，生成的pubkey格式开头为`-----BEGIN PGP PUBLIC KEY BLOCK-----`，结尾为`-----END PGP PUBLIC KEY BLOCK-----`。
 
 1. Github 网页显示成功，则完成。
